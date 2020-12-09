@@ -91,7 +91,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provider :virtualbox do |vb|
-    vb.name = "test"
+    vb.name = "vagrant_kong"
     vb.memory = memory
     vb.cpus = cpus
     vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/ — timesync-set-threshold", 10000]
@@ -109,12 +109,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder tools_source, "/kong-build-tools"
   end
 
-  config.vm.network :forwarded_port, guest: 8000, host: 1000
-  config.vm.network :forwarded_port, guest: 8001, host: 1001
-  config.vm.network :forwarded_port, guest: 8443, host: 1443
-  config.vm.network :forwarded_port, guest: 8444, host: 1444
-  config.vm.network :forwarded_port, guest: 9000, host: 5000 # only used with TCP stream proxy with Kong >= 0.15.0
-  config.vm.network :forwarded_port, guest: 5432, host: 15432
+  config.vm.network :forwarded_port, guest: 8000, host: 8000
+  config.vm.network :forwarded_port, guest: 8001, host: 8001
+  config.vm.network :forwarded_port, guest: 8443, host: 8443
+  config.vm.network :forwarded_port, guest: 8444, host: 8444
+  config.vm.network :forwarded_port, guest: 9000, host: 9000 # only used with TCP stream proxy with Kong >= 0.15.0
+  config.vm.network :forwarded_port, guest: 5432, host: 65432
 
   config.vm.provision "shell", path: "provision.sh",
      env: { "HTTP_PROXY": ENV["HTTP_PROXY"], "HTTPS_PROXY": ENV["HTTPS_PROXY"]},
