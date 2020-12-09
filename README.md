@@ -118,11 +118,14 @@ $ git clone https://github.com/Kong/kong
 # only if you want to develop a custom plugin, also clone the plugin template
 $ git clone https://github.com/Kong/kong-plugin
 
+$ git clone git@github.com:Kong/kong-build-tools.git
+
 # build a box with a folder synced to your local Kong and plugin sources
 $ vagrant up
 
 # ssh into the Vagrant machine, and setup the dev environment
 $ vagrant ssh
+$ ./install-dev-tools.sh
 $ cd /kong
 $ make dev
 

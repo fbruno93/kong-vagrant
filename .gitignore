@@ -5,4 +5,4 @@
 # source code locations
 kong/
 kong-plugin/
-
+kong-build-tools/
